@@ -51,6 +51,7 @@ export default class Game extends React.Component {
           />
         </div>
         <div className="game-info">
+          <div> <small> Chess Icons By en:User:Cburnett [<a href="http://www.gnu.org/copyleft/fdl.html">GFDL</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA-3.0</a>, <a href="http://opensource.org/licenses/bsd-license.php">BSD</a> or <a href="http://www.gnu.org/licenses/gpl.html">GPL</a>], <a href="https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces">via Wikimedia Commons</a> </small></div>
           <div>{status}</div>
         </div>
       </div>
@@ -59,20 +60,16 @@ export default class Game extends React.Component {
 }
 
 
-
-// Chess Icons Attribution: https://www.iconfinder.com/iconsets/chess-7
-// Chess Icon License:  https://creativecommons.org/licenses/by/2.5/
-
 class Piece {
-  constructor(player, icon){
+  constructor(player, iconUrl){
     this.player = player;
-    this.style = {backgroundImage: "url('icons/"+icon+"')"};
+    this.style = {backgroundImage: "url('"+iconUrl+"')"};
   }
 }
 
 class Rook extends Piece {
   constructor(player){
-    super(player, (player === 1? "white_rook.png" : "black_rook.png"));
+    super(player, (player === 1? "https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg"));
   }
 
   isMoveLegal(){
@@ -83,7 +80,7 @@ class Rook extends Piece {
 
 class Knight extends Piece {
   constructor(player){
-    super(player, (player === 1? "white_knight.png" : "black_knight.png"));
+    super(player, (player === 1? "https://upload.wikimedia.org/wikipedia/commons/7/70/Chess_nlt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/e/ef/Chess_ndt45.svg"));
   }
 
   isMoveLegal(){
@@ -93,7 +90,7 @@ class Knight extends Piece {
 
 class Bishop extends Piece {
   constructor(player){
-    super(player, (player === 1? "white_bishop.png" : "black_bishop.png"));
+    super(player, (player === 1? "https://upload.wikimedia.org/wikipedia/commons/b/b1/Chess_blt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/9/98/Chess_bdt45.svg"));
   }
 
   isMoveLegal(){
@@ -104,7 +101,7 @@ class Bishop extends Piece {
 
 class Queen extends Piece {
   constructor(player){
-    super(player, (player === 1? "white_queen.png" : "black_queen.png"));
+    super(player, (player === 1? "https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/4/47/Chess_qdt45.svg"));
   }
 
   isMoveLegal(){
@@ -114,7 +111,7 @@ class Queen extends Piece {
 
 class King extends Piece {
   constructor(player){
-    super(player, (player === 1? "white_king.png" : "black_king.png"));
+    super(player, (player === 1? "https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/f/f0/Chess_kdt45.svg"));
   }
 
   isMoveLegal(){
@@ -125,7 +122,7 @@ class King extends Piece {
 
 class Pawn extends Piece {
   constructor(player){
-    super(player, (player === 1?  "white_pawn.png" : "black_pawn.png"));
+    super(player, (player === 1?  "https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/c/c7/Chess_pdt45.svg"));
   }
 
   isMoveLegal(){

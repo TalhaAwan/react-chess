@@ -24,12 +24,12 @@ ol, ul {
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 52px;
+  height: 48px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 55px;
+  width: 48px;
 }
 
 .square:focus {
@@ -49,7 +49,7 @@ ol, ul {
   margin-left: 20px;
 }
 
-/*https://www.iconfinder.com/iconsets/chess-7*/
+
 button{
   /*background-color: lightgray !important;*/
 }
