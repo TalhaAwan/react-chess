@@ -1,3 +1,3 @@
-# react-tic-tac-toe
-Application built following the Facebook's official [https://facebook.github.io/react/tutorial/tutorial.html](tutorial) on React js
+# React Chess
+Two player chess game built with React js
 
