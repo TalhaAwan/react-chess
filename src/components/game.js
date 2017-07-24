@@ -29,10 +29,10 @@ export default class Game extends React.Component {
     if(this.state.sourceSelection === -1){
       if(!squares[i] || squares[i].player !== this.state.player){
         this.setState({status: "Wrong selection. Choose player " + this.state.player + " pieces."});
-        squares[i].player? delete squares[i].style.backgroundColor: null;
+        squares[i]? delete squares[i].style.backgroundColor: null;
       }
       else{
-        squares[i].style.backgroundColor = "lightblue";
+        squares[i].style = {...squares[i].style, backgroundColor: "lightblue"};
         this.setState({
           status: "Choose valid destination for the selected piece",
           sourceSelection: i
@@ -49,7 +49,9 @@ export default class Game extends React.Component {
         })
       }
       else{
+        
         const squares = this.state.squares;
+        console.log("isMovePossible", squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i));
         squares[i] = squares[this.state.sourceSelection];
         squares[this.state.sourceSelection] = null;
         let player = this.state.player === 1? 2: 1;
@@ -111,8 +113,14 @@ class Rook extends Piece {
     super(player, (player === 1? "https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg"));
   }
 
-  isMoveLegal(){
-    return true
+  isMovePossible(src, dest){
+    if(Math.abs(src - dest) % 8 === 0){
+      return true;
+    }
+    else if(Math.abs(src - dest) < 8 && (src - 7 !== dest) && (src + 7 !== dest)){
+      return true;
+    }
+    return false;
   }
 }
 
@@ -122,7 +130,7 @@ class Knight extends Piece {
     super(player, (player === 1? "https://upload.wikimedia.org/wikipedia/commons/7/70/Chess_nlt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/e/ef/Chess_ndt45.svg"));
   }
 
-  isMoveLegal(){
+  isMovePossible(){
     return true
   }
 }
@@ -132,7 +140,7 @@ class Bishop extends Piece {
     super(player, (player === 1? "https://upload.wikimedia.org/wikipedia/commons/b/b1/Chess_blt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/9/98/Chess_bdt45.svg"));
   }
 
-  isMoveLegal(){
+  isMovePossible(){
     return true
   }
 }
@@ -143,7 +151,7 @@ class Queen extends Piece {
     super(player, (player === 1? "https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/4/47/Chess_qdt45.svg"));
   }
 
-  isMoveLegal(){
+  isMovePossible(){
     return true
   }
 }
@@ -153,7 +161,7 @@ class King extends Piece {
     super(player, (player === 1? "https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/f/f0/Chess_kdt45.svg"));
   }
 
-  isMoveLegal(){
+  isMovePossible(){
     return true
   }
 }
@@ -164,7 +172,7 @@ class Pawn extends Piece {
     super(player, (player === 1?  "https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/c/c7/Chess_pdt45.svg"));
   }
 
-  isMoveLegal(){
+  isMovePossible(){
     return true
   }
 }
