@@ -50,6 +50,10 @@ ol, ul {
 }
 
 
+.icons-attribution{
+  margin-top: 20px;
+}
+
 button{
   /*background-color: lightgray !important;*/
 }

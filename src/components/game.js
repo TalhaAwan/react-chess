@@ -10,52 +10,89 @@ export default class Game extends React.Component {
     super();
     this.state = {
       squares: initialiseChessBoard(),
-      xIsNext: true,
+      player: 1,
+      sourceSelection: -1,
+      status: 'Next player: 1'
     }
   }
 
   handleClick(i){
     const squares = this.state.squares.slice();
+    console.log(i);
 
-    if (calculateWinner(squares) || squares[i]) {
-      return;
+
+    // if (calculateWinner(squares) || squares[i]) {
+    //   return;
+    // }
+    // squares[i] = this.state.xIsNext? 'X' : 'O';
+    
+    if(this.state.sourceSelection === -1){
+      if(!squares[i] || squares[i].player !== this.state.player){
+        this.setState({status: "Wrong selection. Choose player " + this.state.player + " pieces."})
+      }
+      else{
+        this.setState({
+          status: "Choose valid destination for the selected piece",
+          sourceSelection: i
+        });
+      }
+
     }
-    squares[i] = this.state.xIsNext? 'X' : 'O';
-    this.setState({
-      squares: squares,
-      xIsNext: !this.state.xIsNext
-    })
+
+    else if(this.state.sourceSelection > -1){
+      if(squares[i] && squares[i].player === this.state.player){
+        this.setState({
+          status: "Wrong selection. Choose valid source and destination again.",
+          sourceSelection: -1,
+        })
+      }
+      else{
+        const squares = this.state.squares;
+        squares[i] = squares[this.state.sourceSelection];
+        squares[this.state.sourceSelection] = null;
+        let player = this.state.player === 1? 2: 1;
+        this.setState({
+          status: "",
+          sourceSelection: -1,
+          squares: squares,
+          player: player,
+          status: 'Next player: ' + player
+        });
+      }
+    }
+
+
   }
 
   render() {
     const squares = this.state.squares.slice();
     let winner;
     let winningSquares = calculateWinner(squares);
-    let status;
-
-    if(winningSquares){
-      winner = squares[winningSquares[0]];
-      status = 'Winner ' + winner; 
-    }
-    else{
-      status = 'Next player ' + (this.state.xIsNext? 'X' : 'O');
-    }
+    let status = this.state.status;
 
     return (
-      <div className="game">
-        <div className="game-board">
-          <Board 
-          squares = {squares}
-          winningSquares = {winningSquares}
-          // onClick = {(i) => this.handleClick(i)}
-          />
+      <div>
+        <div className="game">
+          <div className="game-board">
+            <Board 
+            squares = {squares}
+            winningSquares = {winningSquares}
+            onClick = {(i) => this.handleClick(i)}
+            />
+          </div>
+          <div className="game-info">
+            
+            <div>{status}</div>
+          </div>
         </div>
-        <div className="game-info">
-          <div> <small> Chess Icons By en:User:Cburnett [<a href="http://www.gnu.org/copyleft/fdl.html">GFDL</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA-3.0</a>, <a href="http://opensource.org/licenses/bsd-license.php">BSD</a> or <a href="http://www.gnu.org/licenses/gpl.html">GPL</a>], <a href="https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces">via Wikimedia Commons</a> </small></div>
-          <div>{status}</div>
+
+        <div className="icons-attribution">
+          <div> <small> Chess Icons And Favicon (extracted) By en:User:Cburnett [<a href="http://www.gnu.org/copyleft/fdl.html">GFDL</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA-3.0</a>, <a href="http://opensource.org/licenses/bsd-license.php">BSD</a> or <a href="http://www.gnu.org/licenses/gpl.html">GPL</a>], <a href="https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces">via Wikimedia Commons</a> </small></div>
         </div>
       </div>
-    );
+
+     
+      );
   }
 }
 
@@ -136,8 +173,8 @@ function initialiseChessBoard(){
   const squares = Array(64).fill(null);
 
   for(let i = 8; i < 16; i++){
-      squares[i] = new Pawn(2);
-      squares[i+40] = new Pawn(1);
+    squares[i] = new Pawn(2);
+    squares[i+40] = new Pawn(1);
   }
   squares[0] = new Rook(2);
   squares[7] = new Rook(2);

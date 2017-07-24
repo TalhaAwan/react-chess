@@ -11,7 +11,7 @@ export default class Board extends React.Component {
     piece = {this.props.squares[i]} 
     style = {this.props.squares[i]? this.props.squares[i].style : null}
     winningSquare = {this.props.winningSquares && this.props.winningSquares.indexOf(i) > -1? true : false}
-    // onClick={() => this.props.onClick(i)}
+    onClick={() => this.props.onClick(i)}
     />
   }
 
