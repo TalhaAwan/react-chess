@@ -114,13 +114,7 @@ class Rook extends Piece {
   }
 
   isMovePossible(src, dest){
-    if(Math.abs(src - dest) % 8 === 0){
-      return true;
-    }
-    else if(Math.abs(src - dest) < 8 && (src - 7 !== dest) && (src + 7 !== dest)){
-      return true;
-    }
-    return false;
+    return (Math.abs(src - dest) % 8 === 0 || (Math.abs(src - dest) < 8 && src - 7 !== dest && src + 7 !== dest));
   }
 }
 
@@ -131,17 +125,14 @@ class Knight extends Piece {
   }
 
   isMovePossible(src, dest){
-    if(src - 17 === dest || 
+    return (src - 17 === dest || 
       src - 10 === dest || 
       src + 6 === dest || 
       src + 15 === dest || 
       src - 15 === dest || 
       src - 6 === dest || 
       src + 10 === dest || 
-      src + 17 === dest){
-      return true;
-    }
-    return false;
+      src + 17 === dest);
   }
 }
 
