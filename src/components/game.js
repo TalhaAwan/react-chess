@@ -114,7 +114,9 @@ class Rook extends Piece {
   }
 
   isMovePossible(src, dest){
-    return (Math.abs(src - dest) % 8 === 0 || (Math.abs(src - dest) < 8 && src - 7 !== dest && src + 7 !== dest));
+    let mod = src % 8;
+    let diff = 8 - mod;
+    return (Math.abs(src - dest) % 8 === 0 || (dest >= (src - mod) && dest < (src + diff)));
   }
 }
 
