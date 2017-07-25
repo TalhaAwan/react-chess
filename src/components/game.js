@@ -34,7 +34,7 @@ export default class Game extends React.Component {
       else{
         squares[i].style = {...squares[i].style, backgroundColor: "lightblue"};
         this.setState({
-          status: "Choose valid destination for the selected piece",
+          status: "Choose destination for the selected piece",
           sourceSelection: i
         });
       }
@@ -51,7 +51,9 @@ export default class Game extends React.Component {
       else{
         
         const squares = this.state.squares;
-        console.log("isMovePossible", squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i, true));
+        const isDestEnemyOccupied = squares[i]? true : false;
+        const isMovePossible = squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i, isDestEnemyOccupied);
+        console.log("isMovePossible", isMovePossible);
         squares[i] = squares[this.state.sourceSelection];
         squares[this.state.sourceSelection] = null;
         let player = this.state.player === 1? 2: 1;
@@ -65,7 +67,16 @@ export default class Game extends React.Component {
       }
     }
 
+  }
 
+  isMoveLegal(path){
+    let isLegal = true;
+    for(let i = 0; i < path.length; i++){
+      if(path[i] !== null){
+        isLegal = false;
+      }
+    }
+    returm isLegal;
   }
 
   render() {
@@ -179,13 +190,13 @@ class Pawn extends Piece {
     }
   }
 
-  isMovePossible(src, dest, enemyOccupied){
+  isMovePossible(src, dest, isDestEnemyOccupied){
 
     if(this.player === 1){
       if(dest === src - 8 || (dest === src - 16 && this.initialPositions[1].indexOf(src) !== -1)){
         return true;
       }
-      else if(enemyOccupied && (dest === src - 9 || dest === src - 7)){
+      else if(isDestEnemyOccupied && (dest === src - 9 || dest === src - 7)){
         return true;
       }
     }
@@ -193,7 +204,7 @@ class Pawn extends Piece {
       if(dest === src + 8 || (dest === src + 16 && this.initialPositions[2].indexOf(src) !== -1)){
         return true;
       }
-      else if(enemyOccupied && (dest === src + 9 || dest === src + 7)){
+      else if(isDestEnemyOccupied && (dest === src + 9 || dest === src + 7)){
         return true;
       }
     }
