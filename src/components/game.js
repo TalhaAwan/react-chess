@@ -53,7 +53,13 @@ export default class Game extends React.Component {
         const squares = this.state.squares;
         const isDestEnemyOccupied = squares[i]? true : false;
         const isMovePossible = squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i, isDestEnemyOccupied);
+        const srcToDestPath = squares[this.state.sourceSelection].getSrcToDestPath(this.state.sourceSelection, i);
+        const isMoveLegal = this.isMoveLegal(srcToDestPath);
+
         console.log("isMovePossible", isMovePossible);
+        console.log("srcToDestPath", srcToDestPath);
+        console.log("isMoveLegal", isMoveLegal);
+
         squares[i] = squares[this.state.sourceSelection];
         squares[this.state.sourceSelection] = null;
         let player = this.state.player === 1? 2: 1;
@@ -69,14 +75,14 @@ export default class Game extends React.Component {
 
   }
 
-  isMoveLegal(path){
+  isMoveLegal(srcToDestPath){
     let isLegal = true;
-    for(let i = 0; i < path.length; i++){
-      if(path[i] !== null){
+    for(let i = 0; i < srcToDestPath.length; i++){
+      if(this.state.squares[srcToDestPath[i]] !== null){
         isLegal = false;
       }
     }
-    returm isLegal;
+    return isLegal;
   }
 
   render() {
@@ -129,6 +135,10 @@ class Rook extends Piece {
     let diff = 8 - mod;
     return (Math.abs(src - dest) % 8 === 0 || (dest >= (src - mod) && dest < (src + diff)));
   }
+
+  getSrcToDestPath(src, dest){
+    return [];
+  }
 }
 
 
@@ -147,6 +157,10 @@ class Knight extends Piece {
       src + 10 === dest || 
       src + 17 === dest);
   }
+
+  getSrcToDestPath(){
+    return [];
+  }
 }
 
 class Bishop extends Piece {
@@ -156,6 +170,10 @@ class Bishop extends Piece {
 
   isMovePossible(){
     return true
+  }
+
+  getSrcToDestPath(src, dest){
+    return [];
   }
 }
 
@@ -168,6 +186,10 @@ class Queen extends Piece {
   isMovePossible(){
     return true
   }
+
+  getSrcToDestPath(src, dest){
+    return [];
+  }
 }
 
 class King extends Piece {
@@ -177,6 +199,10 @@ class King extends Piece {
 
   isMovePossible(){
     return true
+  }
+
+  getSrcToDestPath(src, dest){
+    return [];
   }
 }
 
@@ -209,6 +235,16 @@ class Pawn extends Piece {
       }
     }
     return false;
+  }
+
+  getSrcToDestPath(src, dest){
+    if(dest === src - 16){
+      return [src - 8];
+    }
+    else if(dest === src + 16){
+      return [src + 8];
+    }
+    return [];
   }
 }
 
