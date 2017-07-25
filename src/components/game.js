@@ -75,6 +75,11 @@ export default class Game extends React.Component {
 
   }
 
+  /**
+   * Check all path indices are null. For one steps move of pawn/others or jumping moves of knight array is empty, so  move is legal.
+   * @param  {[type]}  srcToDestPath [array of board indices comprising path between src and dest ]
+   * @return {Boolean}               
+   */
   isMoveLegal(srcToDestPath){
     let isLegal = true;
     for(let i = 0; i < srcToDestPath.length; i++){
