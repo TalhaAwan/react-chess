@@ -338,7 +338,7 @@ class Pawn extends Piece {
   isMovePossible(src, dest, isDestEnemyOccupied){
 
     if(this.player === 1){
-      if(dest === src - 8 || (dest === src - 16 && this.initialPositions[1].indexOf(src) !== -1)){
+      if((dest === src - 8 && !isDestEnemyOccupied) || (dest === src - 16 && this.initialPositions[1].indexOf(src) !== -1)){
         return true;
       }
       else if(isDestEnemyOccupied && (dest === src - 9 || dest === src - 7)){
@@ -346,7 +346,7 @@ class Pawn extends Piece {
       }
     }
     else if(this.player === 2){
-      if(dest === src + 8 || (dest === src + 16 && this.initialPositions[2].indexOf(src) !== -1)){
+      if((dest === src + 8 && !isDestEnemyOccupied) || (dest === src + 16 && this.initialPositions[2].indexOf(src) !== -1)){
         return true;
       }
       else if(isDestEnemyOccupied && (dest === src + 9 || dest === src + 7)){
