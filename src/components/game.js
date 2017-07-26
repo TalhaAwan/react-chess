@@ -45,30 +45,33 @@ export default class Game extends React.Component {
         this.setState({
           status: "Wrong selection. Choose valid source and destination again.",
           sourceSelection: -1,
-        })
+        });
       }
       else{
         
         const squares = this.state.squares;
-        const isDestEnemyOccupied = squares[i]? true : false;
+        const isDestEnemyOccupied = squares[i]? true : false; 
         const isMovePossible = squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i, isDestEnemyOccupied);
         const srcToDestPath = squares[this.state.sourceSelection].getSrcToDestPath(this.state.sourceSelection, i);
         const isMoveLegal = this.isMoveLegal(srcToDestPath);
 
-        console.log("isMovePossible", isMovePossible);
-        console.log("srcToDestPath", srcToDestPath);
-        console.log("isMoveLegal", isMoveLegal);
-
-        squares[i] = squares[this.state.sourceSelection];
-        squares[this.state.sourceSelection] = null;
-        let player = this.state.player === 1? 2: 1;
-        this.setState({
-          status: "",
-          sourceSelection: -1,
-          squares: squares,
-          player: player,
-          status: 'Next player: ' + player
-        });
+        if(isMovePossible && isMoveLegal){
+          squares[i] = squares[this.state.sourceSelection];
+          squares[this.state.sourceSelection] = null;
+          let player = this.state.player === 1? 2: 1;
+          this.setState({
+            sourceSelection: -1,
+            squares: squares,
+            player: player,
+            status: 'Next player: ' + player
+          });
+        }
+        else{
+          this.setState({
+            status: "Wrong selection. Choose valid source and destination again.",
+            sourceSelection: -1,
+          });
+        }
       }
     }
 
