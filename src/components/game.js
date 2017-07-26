@@ -313,6 +313,10 @@ class King extends Piece {
       src - 1 === dest);
   }
 
+  /**
+   * always returns empty array because of one step
+   * @return {[]}
+   */
   getSrcToDestPath(src, dest){
     return [];
   }
