@@ -3,5 +3,5 @@ Two player chess game built with React js.
 
 ## Demo
 
-https://talhaawan.github.io/style-input-background-angularjs/
+https://talhaawan.github.io/react-chess/
 
