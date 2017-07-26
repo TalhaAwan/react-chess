@@ -19,7 +19,7 @@ ol, ul {
 
 .square {
   background: #fff;
-  border: 1px solid #999;
+  border: 1px solid transparent;
   float: left;
   font-size: 24px;
   font-weight: bold;
@@ -54,7 +54,12 @@ ol, ul {
   margin-top: 20px;
 }
 
-button{
-  /*background-color: lightgray !important;*/
+
+/*Board color scheme Wheat from http://omgchess.blogspot.com/2015/09/chess-board-color-schemes.html*/
+.dark-square{
+background-color: RGB( 187,190,100);
 }
 
+.light-square{
+    background-color: RGB(234,240,206);
+}

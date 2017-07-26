@@ -18,12 +18,6 @@ export default class Game extends React.Component {
 
   handleClick(i){
     const squares = this.state.squares.slice();
-
-
-    // if (calculateWinner(squares) || squares[i]) {
-    //   return;
-    // }
-    // squares[i] = this.state.xIsNext? 'X' : 'O';
     
     if(this.state.sourceSelection === -1){
       if(!squares[i] || squares[i].player !== this.state.player){
@@ -31,7 +25,7 @@ export default class Game extends React.Component {
         squares[i]? delete squares[i].style.backgroundColor: null;
       }
       else{
-        squares[i].style = {...squares[i].style, backgroundColor: "lightblue"};
+        squares[i].style = {...squares[i].style, backgroundColor: "RGB(111,143,114)"}; // Emerald from http://omgchess.blogspot.com/2015/09/chess-board-color-schemes.html
         this.setState({
           status: "Choose destination for the selected piece",
           sourceSelection: i
