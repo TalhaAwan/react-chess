@@ -189,6 +189,10 @@ class Knight extends Piece {
       src + 17 === dest);
   }
 
+  /**
+   * always returns empty array because of jumping
+   * @return {[]}
+   */
   getSrcToDestPath(){
     return [];
   }
