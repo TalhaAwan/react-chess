@@ -1,6 +1,7 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
+  background-color: #ECECEA;
 }
 
 ol, ul {
@@ -57,9 +58,16 @@ ol, ul {
 
 /*Board color scheme Wheat from http://omgchess.blogspot.com/2015/09/chess-board-color-schemes.html*/
 .dark-square{
-background-color: RGB( 187,190,100);
+background-color: RGB(187,190,100);
 }
 
 .light-square{
     background-color: RGB(234,240,206);
+}
+
+#player-turn-box{
+  width: 27px;
+  height: 27px;
+  border: 1px solid #000;
+  margin-bottom: 10px;
 }

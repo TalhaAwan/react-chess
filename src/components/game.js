@@ -12,7 +12,8 @@ export default class Game extends React.Component {
       squares: initialiseChessBoard(),
       player: 1,
       sourceSelection: -1,
-      status: 'Next player: 1'
+      status: '',
+      turn: 'white'
     }
   }
 
@@ -53,11 +54,13 @@ export default class Game extends React.Component {
           squares[i] = squares[this.state.sourceSelection];
           squares[this.state.sourceSelection] = null;
           let player = this.state.player === 1? 2: 1;
+          let turn = this.state.turn === 'white'? 'black' : 'white';
           this.setState({
             sourceSelection: -1,
             squares: squares,
             player: player,
-            status: 'Next player: ' + player
+            status: '',
+            turn: turn
           });
         }
         else{
@@ -103,7 +106,10 @@ export default class Game extends React.Component {
             />
           </div>
           <div className="game-info">
-            
+            Turn
+            <div id="player-turn-box" style={{backgroundColor: this.state.turn}}>
+  
+            </div>
             <div>{status}</div>
           </div>
         </div>
