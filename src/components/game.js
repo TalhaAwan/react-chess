@@ -16,7 +16,7 @@ export default class Game extends React.Component {
       turn: 'white'
     }
   }
-
+ 
   handleClick(i){
     const squares = this.state.squares.slice();
     
