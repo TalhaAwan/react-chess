@@ -12,6 +12,7 @@ Each piece implements `isMovePossible(src, dest)` and `getSrcToDestPath(src, des
 
 ## To Dos
 - Implement a method in `Game` that returns true if this move exposes the player's king to check. Use it to disallow the move and inform user.
+- Write unit tests 
 
 
 ## Demo
