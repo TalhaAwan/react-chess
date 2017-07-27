@@ -19,7 +19,7 @@ ol, ul {
 }
 
 .square {
-  background: #fff;
+  background: transparent;
   border: 1px solid transparent;
   float: left;
   font-size: 24px;
@@ -51,9 +51,11 @@ ol, ul {
 }
 
 
-.icons-attribution{
+.icons-attribution, .game-status, .fallen-soldier-block{
   margin-top: 20px;
+  min-height: 50px;
 }
+
 
 
 /*Board color scheme Wheat from http://omgchess.blogspot.com/2015/09/chess-board-color-schemes.html*/
@@ -66,8 +68,12 @@ background-color: RGB(187,190,100);
 }
 
 #player-turn-box{
-  width: 27px;
-  height: 27px;
+  width: 32px;
+  height: 32px;
   border: 1px solid #000;
   margin-bottom: 10px;
+}
+
+h3{
+  margin-bottom: 5px;
 }
