@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import '../index.css';
 import Board from './board.js';
@@ -64,8 +63,6 @@ export default class Game extends React.Component {
               blackFallenSoldiers.push(squares[i]);
             }
           }
-          console.log("whiteFallenSoldiers", whiteFallenSoldiers) ;
-          console.log("blackFallenSoldiers", blackFallenSoldiers);
           squares[i] = squares[this.state.sourceSelection];
           squares[this.state.sourceSelection] = null;
           let player = this.state.player === 1? 2: 1;

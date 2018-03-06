@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import '../index.css';
 import Square from './square.js';
@@ -8,7 +7,6 @@ export default class Board extends React.Component {
 
   renderSquare(i, squareShade) {
     return <Square 
-    piece = {this.props.squares[i]} 
     style = {this.props.squares[i]? this.props.squares[i].style : null}
     shade = {squareShade}
     onClick={() => this.props.onClick(i)}
@@ -36,5 +34,5 @@ export default class Board extends React.Component {
 
 
 function isEven(num){
-  return num % 2 == 0
+  return num % 2 === 0
 }
