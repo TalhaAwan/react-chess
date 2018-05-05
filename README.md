@@ -4,7 +4,7 @@ Two player chess game built with React js.
 ## How It's Build
 The components boilerplate sturcture consisting of Game, Board and Square is same as of Facebook [tic tac toe tutorial](https://facebook.github.io/react/tutorial/tutorial.html).
 
-ES6 classes have been used for chess pieces. `Piece` is a parent class to which `King`, `Queen`, `Bishop`, `Kinight`, `Rook` and `Pawn` extend. Board of squares is filled with these pieces and null.
+ES6 classes have been used for chess pieces. `Piece` is a parent class to which `King`, `Queen`, `Bishop`, `Knight`, `Rook` and `Pawn` extend. Board of squares is filled with these pieces and null.
 
 `Game` component maintains the board of squares filled with pieces, and handles each players' turns plus their moves. 
 
@@ -17,5 +17,10 @@ Each piece implements `isMovePossible(src, dest)` and `getSrcToDestPath(src, des
 
 ## Demo
 
-https://talhaawan.github.io/react-chess/
+http://www.talhaawan.net/react-chess/
+
+## Blog Post
+
+https://www.techighness.com/post/develop-two-player-chess-game-with-react-js/
+
 
