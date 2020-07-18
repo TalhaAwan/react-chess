@@ -1,4 +1,5 @@
 import Piece from './piece.js';
+import { isSameRow } from '../helpers'
 
 export default class Knight extends Piece {
   constructor(player) {
@@ -6,14 +7,14 @@ export default class Knight extends Piece {
   }
 
   isMovePossible(src, dest) {
-    return (src - 17 === dest ||
-      src - 10 === dest ||
-      src + 6 === dest ||
-      src + 15 === dest ||
-      src - 15 === dest ||
-      src - 6 === dest ||
-      src + 10 === dest ||
-      src + 17 === dest);
+    return ((src - 17 === dest && !isSameRow(src, dest)) ||
+      (src - 10 === dest && !isSameRow(src, dest)) ||
+      (src + 6 === dest && !isSameRow(src, dest)) ||
+      (src + 15 === dest && !isSameRow(src, dest)) ||
+      (src - 15 === dest && !isSameRow(src, dest)) ||
+      (src - 6 === dest && !isSameRow(src, dest)) ||
+      (src + 10 === dest && !isSameRow(src, dest)) ||
+      (src + 17 === dest && !isSameRow(src, dest)))
   }
 
   /**

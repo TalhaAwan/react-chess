@@ -1,4 +1,5 @@
 import Piece from './piece.js';
+import { isSameDiagonal } from '../helpers'
 
 export default class Pawn extends Piece {
   constructor(player) {
@@ -15,7 +16,7 @@ export default class Pawn extends Piece {
       if ((dest === src - 8 && !isDestEnemyOccupied) || (dest === src - 16 && this.initialPositions[1].indexOf(src) !== -1)) {
         return true;
       }
-      else if (isDestEnemyOccupied && (dest === src - 9 || dest === src - 7)) {
+      else if (isDestEnemyOccupied && isSameDiagonal(src, dest) && (dest === src - 9 || dest === src - 7)) {
         return true;
       }
     }
@@ -23,7 +24,7 @@ export default class Pawn extends Piece {
       if ((dest === src + 8 && !isDestEnemyOccupied) || (dest === src + 16 && this.initialPositions[2].indexOf(src) !== -1)) {
         return true;
       }
-      else if (isDestEnemyOccupied && (dest === src + 9 || dest === src + 7)) {
+      else if (isDestEnemyOccupied && isSameDiagonal(src, dest) && (dest === src + 9 || dest === src + 7)) {
         return true;
       }
     }

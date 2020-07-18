@@ -1,4 +1,5 @@
 import Piece from './piece.js';
+import { isSameDiagonal, isSameRow } from '../helpers'
 
 export default class King extends Piece {
   constructor(player) {
@@ -6,14 +7,14 @@ export default class King extends Piece {
   }
 
   isMovePossible(src, dest) {
-    return (src - 9 === dest ||
+    return ((src - 9 === dest && isSameDiagonal(src, dest)) ||
       src - 8 === dest ||
-      src - 7 === dest ||
-      src + 1 === dest ||
-      src + 9 === dest ||
+      (src - 7 === dest && isSameDiagonal(src, dest)) ||
+      (src + 1 === dest && isSameRow(src, dest)) ||
+      (src + 9 === dest && isSameDiagonal(src, dest)) ||
       src + 8 === dest ||
-      src + 7 === dest ||
-      src - 1 === dest);
+      (src + 7 === dest && isSameDiagonal(src, dest)) ||
+      (src - 1 === dest && isSameRow(src, dest)))
   }
 
   /**
