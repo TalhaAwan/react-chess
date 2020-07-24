@@ -3,4 +3,8 @@ export default class Piece {
     this.player = player;
     this.style = { backgroundImage: "url('" + iconUrl + "')" };
   }
+
+  getPlayer() {
+    return this.player
+  }
 }
