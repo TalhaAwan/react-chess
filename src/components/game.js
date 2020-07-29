@@ -109,14 +109,13 @@ export default class Game extends React.Component {
    * @param  {[type]}  srcToDestPath [array of board indices comprising path between src and dest ]
    * @return {Boolean}               
    */
-  isMoveLegal(srcToDestPath) {
-    let isLegal = true;
+  isMoveLegal(srcToDestPath, squares = this.state.squares) {
     for (let i = 0; i < srcToDestPath.length; i++) {
-      if (this.state.squares[srcToDestPath[i]] !== null) {
-        isLegal = false;
+      if (squares[srcToDestPath[i]] !== null) {
+        return false;
       }
     }
-    return isLegal;
+    return true;
   }
 
   getKingPosition(squares, player) {
@@ -132,8 +131,7 @@ export default class Game extends React.Component {
   isCheckForPlayer(squares, player) {
     const opponent = player === 1 ? 2 : 1
     const playersKingPosition = this.getKingPosition(squares, player)
-    const canPieceKillPlayersKing = (piece, i) => piece.isMovePossible(playersKingPosition, i)
-    console.log(squares)
+    const canPieceKillPlayersKing = (piece, i) => piece.isMovePossible(playersKingPosition, i, squares)
     return squares.reduce((acc, curr, idx) =>
       acc ||
       (curr &&
