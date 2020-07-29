@@ -36,8 +36,8 @@ export default class Game extends React.Component {
           status: "Choose destination for the selected piece",
           sourceSelection: i
         })
-        return
       }
+      return
     }
 
     squares[this.state.sourceSelection].style = { ...squares[this.state.sourceSelection].style, backgroundColor: "" };
@@ -52,7 +52,7 @@ export default class Game extends React.Component {
 
       const whiteFallenSoldiers = [];
       const blackFallenSoldiers = [];
-      const isDestEnemyOccupied = squares[i] ? true : false;
+      const isDestEnemyOccupied = Boolean(squares[i]);
       const isMovePossible = squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i, isDestEnemyOccupied);
 
       if (isMovePossible) {
