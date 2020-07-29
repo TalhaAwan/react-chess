@@ -1,13 +1,13 @@
 import Piece from './piece.js';
-import { isSameRow, isSameColumn, isSameDiagonal } from '../helpers'
+import { isSameRow, isSameColumn, isSameDiagonal, isPathClean } from '../helpers'
 
 export default class Rook extends Piece {
   constructor(player) {
     super(player, (player === 1 ? "https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg"));
   }
 
-  isMovePossible(src, dest) {
-    return isSameColumn(src, dest) || isSameRow(src, dest);
+  isMovePossible(src, dest, squares) {
+    return isPathClean(this.getSrcToDestPath(src, dest), squares) && (isSameColumn(src, dest) || isSameRow(src, dest));
   }
 
   /**
