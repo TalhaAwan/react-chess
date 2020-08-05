@@ -16,9 +16,12 @@ const isSameDiagonal = (src, dest) => {
     (diagonalDictionaryTRBL[src] && diagonalDictionaryTRBL[src][dest]))
 }
 
+const isPathClean = (srcToDestPath, squares) => srcToDestPath.reduce((acc, curr) => !squares[curr] && acc, true)
+
 
 module.exports = {
   isSameRow,
   isSameColumn,
-  isSameDiagonal
+  isSameDiagonal,
+  isPathClean
 }
